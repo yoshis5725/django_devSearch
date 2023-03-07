@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Projects Template</h1>
+
+    <ul>
+    {% for project in all_projects %}
+        <li>
+            <a href="project/{{ project.id }}">Title: {{ project }} ---</a> |
+            <a href="{% url 'update-project' project.id %}">Update</a> |
+            <a href="{% url 'delete-project' project.id %}">Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}

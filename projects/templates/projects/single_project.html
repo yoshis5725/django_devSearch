@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Single Project</h1>
+    <br>
+    <h3>{{ single_project.title }}</h3>
+    <p>{{ single_project.description }}</p>
+    <hr>
+    <ul>
+    {% for tag in tags %}
+        <li>{{ tag }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}1>
