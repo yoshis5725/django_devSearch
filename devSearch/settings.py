@@ -1,3 +1,4 @@
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -13,7 +14,7 @@ SECRET_KEY = "django-insecure-*!3+&%dp*w3u#0ex&(6yo(3(a5uge+itw!)@3xtxc^)&+nkd+s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # will not server user uploaded content
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -106,6 +109,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = '/images/'  # renders the images
+
+# telling Django where the static folder is located
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+# production settings for static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# telling Django where to store uploaded photos
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

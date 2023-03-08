@@ -6,6 +6,7 @@ class Project(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     title = models.CharField(max_length=128)
     description = models.TextField(null=True, blank=True)  # can submit and leave this field empty
+    featured_image = models.ImageField(null=True, blank=True, default='default.jpg')  # installed pillow
     demo_link = models.CharField(max_length=256, null=True, blank=True)
     source_link = models.CharField(max_length=256, null=True, blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)

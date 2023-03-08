@@ -21,7 +21,7 @@ def create_project(request):
 
     # retrieving the posted information, verifying it, then saving it back to the db
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('projects')
@@ -36,7 +36,7 @@ def update_project(request, pk):
 
     # retrieving the new posted information, verifying it, then saving it back to the db
     if request.method == 'POST':
-        form = ProjectForm(request.POST, instance=single_project)
+        form = ProjectForm(request.POST, request.FILES, instance=single_project)
         if form.is_valid():
             form.save()
             return redirect('projects')
