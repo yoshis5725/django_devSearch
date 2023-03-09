@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Profile  # accessing the model for one-to-many relationship
 import uuid
 
 
@@ -15,6 +16,7 @@ class Project(models.Model):
 
     # relationships
     tags = models.ManyToManyField('Tag', blank=True)
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.title}'

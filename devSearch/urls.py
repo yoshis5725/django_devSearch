@@ -6,7 +6,8 @@ from django.conf.urls.static import static  # helps create url for static files
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('projects.urls'))
+    path('projects/', include('projects.urls')),
+    path('', include('users.urls'))
 ]
 
 # The settings.MEDIA_URL setting specifies the base URL for serving media files, while settings.MEDIA_ROOT specifies
