@@ -7,6 +7,7 @@ class Profile(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     name = models.CharField(max_length=128, blank=True, null=True)
     username = models.CharField(max_length=128, blank=True, null=True)
+    location = models.CharField(max_length=128, blank=True, null=True)
     email = models.EmailField(max_length=128, blank=True, null=True)
     intro = models.CharField(max_length=128, blank=True, null=True)
     bio = models.TextField()
@@ -24,5 +25,16 @@ class Profile(models.Model):
         return str(self.user.username)
 
 
+class Skill(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    name = models.CharField(max_length=128, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    # relationships
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
